@@ -48,10 +48,10 @@ In addition, if your input contains an indicator that it is a pre-release (e.g.,
 
 ## Example
 
-The following example works together with the [`WyriHaximus/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag)
-and [`WyriHaximus/github-action-create-milestone`](https://github.com/marketplace/actions/create-milestone) actions.
+The following example works together with the [`cloudopsworks/github-action-get-previous-tag`](https://github.com/marketplace/actions/get-latest-tag)
+and [`cloudopsworks/github-action-create-milestone`](https://github.com/marketplace/actions/create-milestone) actions.
 Where it uses the output from that action to supply a set of versions for the next action, which creates a new
-milestone. (This snippet has been taken from the automatic code generation of [`wyrihaximus/fake-php-version`](https://github.com/wyrihaximus/php-fake-php-version/).)
+milestone. (This snippet has been taken from the automatic code generation of [`cloudopsworks/fake-php-version`](https://github.com/cloudopsworks/php-fake-php-version/).)
 
 ```yaml
 name: Generate
@@ -61,17 +61,17 @@ jobs:
       - uses: actions/checkout@v1
       - name: 'Get Previous tag'
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        uses: "cloudopsworks/github-action-get-previous-tag@v1"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: 'Get next minor version'
         id: semvers
-        uses: "WyriHaximus/github-action-next-semvers@v1"
+        uses: "cloudopsworks/github-action-next-semvers@v1"
         with:
           version: ${{ steps.previoustag.outputs.tag }}
       - name: 'Create new milestone'
         id: createmilestone
-        uses: "WyriHaximus/github-action-create-milestone@v1"
+        uses: "cloudopsworks/github-action-create-milestone@v1"
         with:
           title: ${{ steps.semvers.outputs.patch }}
         env:
@@ -80,7 +80,8 @@ jobs:
 
 ## License ##
 
-Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
+Copyright 2023 [Cloud Ops Works](http://cloudops.works/)
+Based on works: Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
