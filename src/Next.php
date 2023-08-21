@@ -33,7 +33,7 @@ final class Next
 
             // split versionString by '-' (in case it is a pre-release)
             if (strpos($versionString, '-') !== false) {
-                $versionArr = explode('-', $versionString, self::PRE_RELEASE_CHUNK_COUNT);
+                $versionArr                   = explode('-', $versionString, self::PRE_RELEASE_CHUNK_COUNT);
                 [$versionString, $preRelease] = [$versionArr[0], $versionArr[1] ?? '']
                 $versionString               .= '.0-' . $preRelease;
             } else {
